@@ -1,0 +1,40 @@
+Sisi Pisi Site, actualizare după audit v1.1
+
+Fișiere modificate.
+index.html
+suite.html
+cum-functioneaza.html
+conditii.html
+rezervare.html
+faq.html
+assets/i18n.js
+assets/main.js
+
+Corecții principale.
+1. Am eliminat denumirea Ultra VIP și am păstrat VIP.
+2. Am actualizat dimensiunile suitelor.
+   Premium, 5 mp.
+   VIP, 6 mp.
+   Înălțime minimă de lucru, 2,40 m.
+3. Am introdus roata de alergare și TV-ul ambiental ca dotări pentru ambele suite.
+4. Am diferențiat VIP prin suprafață, materiale, accesorii și 30 minute de joacă supravegheată incluse zilnic.
+5. Am actualizat grila de prețuri.
+   Premium, 200 lei pe noapte.
+   VIP, 280 lei pe noapte.
+6. Am introdus lista de opționale.
+   Joc suplimentar.
+   Administrare medicamente.
+   Grooming de bază.
+   Transport check-in sau check-out în Brașov.
+   A doua pisică din aceeași familie.
+   Sezon de vârf.
+   Reduceri pentru ședere lungă.
+   Depășire check-out.
+7. Am introdus politica pentru pisică neridicată la data stabilită.
+8. Am introdus fluxul electronic pentru fișă de cazare și contract.
+9. Am actualizat formularul de rezervare cu acceptări explicite pentru politica de ridicare, acces video și semnare electronică.
+10. Am actualizat descrierea echipamentelor smart.
+11. Am actualizat FAQ cu întrebări despre ridicare întârziată și documente electronice.
+12. Am actualizat traducerile RO, EN și HU pentru toate cheile folosite în HTML.
+13. Am verificat lipsa cheilor i18n neacoperite.
+14. Am verificat sintaxa JavaScript pentru i18n.js și main.js.

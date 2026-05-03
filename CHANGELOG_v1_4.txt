@@ -1,0 +1,23 @@
+SisiPisi Site actualizat v1.4, corecții pe baza auditului site v1.3
+
+Modificări principale.
+1. Am corectat afirmațiile sensibile, afirmațiile nevalidate juridic sau operațional.
+2. Am eliminat placeholderul telefonic numărul telefonic și adresa publică neconfirmate.
+3. Am uniformizat programul în footer și formular.
+4. Am adăugat pagini dedicate pentru Termeni de cazare, Confidențialitate și GDPR, Cookies și Pașii următori.
+5. Am extins formularul de rezervare la 7 pași.
+6. Am adăugat persoana autorizată pentru preluare.
+7. Am adăugat opțiunea pentru a doua pisică din aceeași familie și calculul aferent.
+8. Am adăugat servicii opționale în formular și sumar, joacă supravegheată, medicamente, grooming, transport.
+9. Am refăcut sumarul cu cazare, a doua pisică, opționale și reduceri pentru ședere lungă.
+10. Am adăugat acord explicit pentru intervenție veterinară de urgență și acord separat pentru WhatsApp.
+11. Am corectat duplicarea unității lei pe noapte în cardurile de suită.
+12. Am uniformizat termenul joacă supravegheată.
+13. Am adăugat îmbunătățiri de accesibilitate, aria-expanded la meniu și FAQ, labeluri dinamice pentru formular, focus state.
+14. Am mutat referințele imagini către assets/images și am inclus placeholder SVG pentru logo, intrare, recepție și suită, pentru ca pachetul să nu mai depindă de folderul extern Vizual.
+15. Am păstrat limba maghiară cu termenul cica.
+
+Limitări rămase.
+1. Formularul este încă static. Nu trimite email, nu salvează rezervarea și nu generează documente semnate.
+2. Automatizarea email, WhatsApp, CRM, PDF contract și semnare pe panou digital necesită backend sau platformă externă.
+3. Placeholderurile SVG trebuie înlocuite cu vizualurile finale înainte de publicare.

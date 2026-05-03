@@ -1,0 +1,15 @@
+Sisi Pisi Site actualizat v1.2
+
+Modificări față de v1.1:
+
+1. Slogan principal homepage schimbat în:
+   Pentru liniștea ta deplină.
+
+2. Slogan secundar CTA schimbat în:
+   Aici mustățile zâmbesc.
+
+3. Actualizate textele fallback din HTML pentru index și secțiunile CTA din toate paginile.
+
+4. Actualizate traducerile RO, EN și HU în assets/i18n.js.
+
+5. Verificată sintaxa JavaScript pentru assets/i18n.js și assets/main.js.

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rezervare online · Sisi Pisi Boutique Hotel</title>
+<meta name="description" content="Rezervă online o suită la Sisi Pisi Boutique Hotel. Wizard în 7 pași cu verificare preliminară a datelor medicale și sumar estimativ de preț.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div data-i18n="topbar.tagline">Hotel boutique pentru pisici · Brașov</div>
+    <div class="topbar-right">
+      <a href="mailto:rezervari@sisipisi.ro" data-i18n="topbar.phone">Contact: rezervari@sisipisi.ro</a>
+      <div class="lang-switcher">
+        <button data-lang="ro" class="active">RO</button><span class="lang-divider">·</span>
+        <button data-lang="en">EN</button><span class="lang-divider">·</span>
+        <button data-lang="hu">HU</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><img src="../../Vizual/Logo%20transparent.png" alt="Sisi Pisi"></a>
+    <nav class="primary">
+      <a href="despre.html" data-i18n="nav.about">Despre</a>
+      <a href="suite.html" data-i18n="nav.suites">Suite</a>
+      <a href="cum-functioneaza.html" data-i18n="nav.how">Cum funcționează</a>
+      <a href="conditii.html" data-i18n="nav.requirements">Condiții</a>
+      <a href="faq.html" data-i18n="nav.faq">Întrebări</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <a href="rezervare.html" class="btn-primary" data-i18n="nav.book">Rezervă online</a>
+    <button class="menu-toggle" aria-label="Menu" aria-expanded="false" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container reveal">
+    <div class="eyebrow" data-i18n="nav.book">Rezervare</div>
+    <h1><span data-i18n="res.hero.title.1">Rezervare online.</span> <em data-i18n="res.hero.title.2">În 7 pași.</em></h1>
+    <p class="lead" data-i18n="res.hero.lead">Toate rezervările trec prin acest formular. Completarea durează aproximativ 7 minute. Confirmarea sosește pe email în maximum 12 ore.</p>
+  </div>
+</section>
+
+<section class="bg-cream" style="padding: 60px 0 110px;">
+  <div class="container">
+    <div class="wizard">
+
+      <div class="wizard-progress">
+        <div class="step-dot active"><div class="dot">1</div><div class="label" data-i18n="res.step.dates">Date</div></div>
+        <div class="step-dot"><div class="dot">2</div><div class="label" data-i18n="res.step.suite">Suită</div></div>
+        <div class="step-dot"><div class="dot">3</div><div class="label" data-i18n="res.step.owner">Proprietar</div></div>
+        <div class="step-dot"><div class="dot">4</div><div class="label" data-i18n="res.step.cat">Pisică</div></div>
+        <div class="step-dot"><div class="dot">5</div><div class="label" data-i18n="res.step.medical">Medical</div></div>
+        <div class="step-dot"><div class="dot">6</div><div class="label" data-i18n="res.step.options">Opționale</div></div>
+        <div class="step-dot"><div class="dot">7</div><div class="label" data-i18n="res.step.summary">Sumar</div></div>
+      </div>
+
+      <!-- Step 1: Dates -->
+      <div class="wizard-step active">
+        <h2 data-i18n="res.s1.title">Selectează perioada</h2>
+        <p class="step-intro" data-i18n="res.s1.intro">Check-in disponibil zilnic, 09:00 - 18:00.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label data-i18n="res.checkin">Data check-in <span class="required">*</span></label>
+            <input type="date" name="checkin">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.checkout">Data check-out <span class="required">*</span></label>
+            <input type="date" name="checkout">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.checkin.time">Ora check-in</label>
+            <select name="checkinTime">
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.checkout.time">Ora check-out</label>
+            <select name="checkoutTime">
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+              <option value="17:00">17:00</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="wizard-actions right">
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Suite -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s2.title">Alege suita</h2>
+        <p class="step-intro" data-i18n="res.s2.intro">Tarifele sunt per noapte. Capacitatea unei suite: o pisică sau mai multe pisici din aceeași familie.</p>
+
+        <div id="suite-error" class="alert error" style="display: none;" data-i18n="res.err.suite">Selectează o suită</div>
+
+        <label class="suite-option" for="suite-premium">
+          <input type="radio" id="suite-premium" name="suite" value="premium" data-price="200" data-name="Suita Premium">
+          <div>
+            <div class="suite-name" data-i18n="suite.premium.title">Suita Premium</div>
+            <div class="suite-meta" data-i18n="res.s2.premium.meta">5 mp · 200 lei/noapte · dotări smart și acces video 24/24</div>
+          </div>
+          <div class="suite-price">200<small data-i18n="suite.priceUnit">lei / noapte</small></div>
+        </label>
+
+        <label class="suite-option" for="suite-vip">
+          <input type="radio" id="suite-vip" name="suite" value="vip" data-price="280" data-name="Suita VIP">
+          <div>
+            <div class="suite-name" data-i18n="suite.vip.title">Suita VIP</div>
+            <div class="suite-meta" data-i18n="res.s2.vip.meta">6 mp · 280 lei/noapte · 30 minute joc incluse</div>
+          </div>
+          <div class="suite-price">280<small data-i18n="suite.priceUnit">lei / noapte</small></div>
+        </label>
+
+
+        <div class="form-field" style="margin-top:24px;">
+          <label for="catCount" data-i18n="res.s2.catCount">Număr pisici în suită <span class="required">*</span></label>
+          <select id="catCount" name="catCount">
+            <option value="1" data-i18n="res.s2.oneCat">O pisică</option>
+            <option value="2" data-i18n="res.s2.twoCats">Două pisici din aceeași familie</option>
+          </select>
+          <div class="help" data-i18n="res.s2.catCountHelp">A doua pisică este acceptată doar dacă locuiește deja cu prima și evaluarea noastră confirmă că împărțirea suitei este potrivită.</div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Owner -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s3.title">Date proprietar</h2>
+        <p class="step-intro" data-i18n="res.s3.intro">Aceste informații apar în contractul de cazare. Le folosim exclusiv pentru rezervare și comunicare directă.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label data-i18n="res.s3.firstname">Prenume <span class="required">*</span></label>
+            <input type="text" name="firstname">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s3.lastname">Nume <span class="required">*</span></label>
+            <input type="text" name="lastname">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s3.email">Email <span class="required">*</span></label>
+            <input type="email" name="email">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s3.phone">Telefon <span class="required">*</span></label>
+            <input type="tel" name="phone" placeholder="07XX XXX XXX">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s3.ci">Serie și număr CI <span class="required">*</span></label>
+            <input type="text" name="ci">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s3.city">Oraș <span class="required">*</span></label>
+            <input type="text" name="city" value="Brașov">
+            <div class="error-msg"></div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label data-i18n="res.s3.address">Adresă <span class="required">*</span></label>
+          <input type="text" name="address">
+          <div class="error-msg"></div>
+        </div>
+
+        <div class="form-field">
+          <label data-i18n="res.s3.county">Județ <span class="required">*</span></label>
+          <input type="text" name="county" value="Brașov">
+          <div class="error-msg"></div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="firstvisit" name="firstvisit" checked>
+          <label for="firstvisit" data-i18n="res.s3.firstvisit">Este prima rezervare la Sisi Pisi</label>
+        </div>
+
+        <div class="form-divider"><span data-i18n="res.s3.authTitle">Persoană autorizată pentru preluare</span></div>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="authName" data-i18n="res.s3.authName">Nume persoană autorizată <span class="required">*</span></label>
+            <input type="text" id="authName" name="authName">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label for="authPhone" data-i18n="res.s3.authPhone">Telefon persoană autorizată <span class="required">*</span></label>
+            <input type="tel" id="authPhone" name="authPhone">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label for="authRelation" data-i18n="res.s3.authRelation">Relație cu proprietarul <span class="required">*</span></label>
+            <input type="text" id="authRelation" name="authRelation" placeholder="Familie, prieten, vecin">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label for="preferredChannel" data-i18n="res.s3.preferredChannel">Canal principal documente</label>
+            <select id="preferredChannel" name="preferredChannel">
+              <option value="email" data-i18n="res.s3.emailChannel">Email</option>
+              <option value="email_whatsapp" data-i18n="res.s3.emailWhatsappChannel">Email și WhatsApp</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Cat -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s4.title">Date pisică</h2>
+        <p class="step-intro" data-i18n="res.s4.intro">Informații folosite pentru a oferi îngrijirea potrivită. Comunicăm zilnic cu tine despre starea pisicii.</p>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label data-i18n="res.s4.catname">Numele pisicii <span class="required">*</span></label>
+            <input type="text" name="catname">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s4.birth">Data nașterii <span class="required">*</span></label>
+            <input type="date" name="birth">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s4.sex">Sex <span class="required">*</span></label>
+            <select name="sex">
+              <option value="">—</option>
+              <option value="female" data-i18n="res.s4.female">Femelă</option>
+              <option value="male" data-i18n="res.s4.male">Mascul</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s4.breed">Rasă <span class="required">*</span></label>
+            <input type="text" name="breed" placeholder="Europeană, Britanică, Maine Coon...">
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s4.sterilized">Sterilizat / castrat <span class="required">*</span></label>
+            <select name="sterilized">
+              <option value="">—</option>
+              <option value="yes" data-i18n="res.s4.yes">Da</option>
+              <option value="no" data-i18n="res.s4.no">Nu</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s4.behavior">Comportament <span class="required">*</span></label>
+            <select name="behavior">
+              <option value="">—</option>
+              <option value="shy" data-i18n="res.s4.shy">Timidă, retrasă</option>
+              <option value="social" data-i18n="res.s4.social">Sociabilă, prietenoasă</option>
+              <option value="anxious" data-i18n="res.s4.anxious">Anxioasă, ușor stresată</option>
+              <option value="aggressive" data-i18n="res.s4.aggressive">Poate fi agresivă</option>
+            </select>
+            <div class="error-msg"></div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label data-i18n="res.s4.food">Hrană obișnuită</label>
+          <textarea name="food" rows="2"></textarea>
+          <div class="help" data-i18n="res.s4.foodHelp">Marcă, tip, frecvență. Recomandăm să aduci propria hrană pentru continuitate.</div>
+        </div>
+
+        <div class="form-field">
+          <label data-i18n="res.s4.meds">Medicamente sau suplimente</label>
+          <textarea name="meds" rows="2"></textarea>
+          <div class="help" data-i18n="res.s4.medsHelp">Numele, doza, frecvența, ora și calea de administrare. Lasă gol dacă nu ia nimic.</div>
+        </div>
+
+        <div id="second-cat-section" style="display:none; margin-top: 24px;">
+          <div class="form-divider"><span data-i18n="res.s4.secondTitle">A doua pisică</span></div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="cat2name" data-i18n="res.s4.cat2name">Numele celei de-a doua pisici <span class="required">*</span></label>
+              <input type="text" id="cat2name" name="cat2name">
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-field">
+              <label for="cat2birth" data-i18n="res.s4.cat2birth">Data nașterii <span class="required">*</span></label>
+              <input type="date" id="cat2birth" name="cat2birth">
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-field">
+              <label for="cat2sex" data-i18n="res.s4.cat2sex">Sex <span class="required">*</span></label>
+              <select id="cat2sex" name="cat2sex"><option value="">—</option><option value="female" data-i18n="res.s4.female">Femelă</option><option value="male" data-i18n="res.s4.male">Mascul</option></select>
+              <div class="error-msg"></div>
+            </div>
+            <div class="form-field">
+              <label for="cat2notes" data-i18n="res.s4.cat2notes">Observații a doua pisică</label>
+              <input type="text" id="cat2notes" name="cat2notes">
+            </div>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="behaviorNotes" data-i18n="res.s4.behaviorNotes">Observații comportamentale</label>
+          <textarea id="behaviorNotes" name="behaviorNotes" rows="2"></textarea>
+          <div class="help" data-i18n="res.s4.behaviorNotesHelp">Frici, preferințe, reacții la manipulare, zone sensibile, jucării preferate.</div>
+        </div>
+        <div class="form-field">
+          <label for="personalItems" data-i18n="res.s4.personalItems">Obiecte aduse de proprietar</label>
+          <textarea id="personalItems" name="personalItems" rows="2"></textarea>
+          <div class="help" data-i18n="res.s4.personalItemsHelp">Hrană, nisip, pătură, jucării, carrier sau alte obiecte care trebuie returnate la check-out.</div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 5: Medical -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s5.title">Validare medicală</h2>
+        <p class="step-intro" data-i18n="res.s5.intro">Aceste informații sunt obligatorii pentru prima rezervare. Formularul face o verificare preliminară, iar confirmarea finală se face de echipa Sisi Pisi pe baza carnetului veterinar.</p>
+
+        <div class="alert" data-i18n="res.s5.alert"><strong>Important.</strong> La check-in, vom verifica fizic carnetul veterinar. Asigură-te că informațiile completate sunt corecte și actuale.</div>
+
+        <div id="booklet-error" class="alert error" style="display: none;">Confirmarea carnetului este obligatorie.</div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="bookletConfirm" name="bookletConfirm">
+          <label for="bookletConfirm" data-i18n="res.s5.bookletConfirm">Confirm că pisica are carnet de sănătate veterinar valid, completat și parafat</label>
+        </div>
+
+        <div class="form-grid" style="margin-top: 24px;">
+          <div class="form-field">
+            <label data-i18n="res.s5.rabies">Data ultimei vaccinări antirabice <span class="required">*</span></label>
+            <input type="date" name="rabies">
+            <div class="help" data-i18n="res.s5.rabiesHelp">Vaccinul antirabic are valabilitate de 1 an. Calculăm automat dacă este la zi la data check-in.</div>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s5.fvrcp">Data ultimei vaccinări FVRCP <span class="required">*</span></label>
+            <input type="date" name="fvrcp">
+            <div class="help" data-i18n="res.s5.fvrcpHelp">Vaccin complex (rinotraheită, calicivirus, panleucopenie). Valabilitate 1 an.</div>
+            <div class="error-msg"></div>
+          </div>
+          <div class="form-field">
+            <label data-i18n="res.s5.deworm">Data ultimei deparazitări <span class="required">*</span></label>
+            <input type="date" name="deworm">
+            <div class="help" data-i18n="res.s5.dewormHelp">Internă și externă, conform recomandării medicului veterinar.</div>
+            <div class="error-msg"></div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label data-i18n="res.s5.upload">Încarcă fotografia carnetului veterinar</label>
+          <input type="file" name="bookletFile" accept="image/*,application/pdf">
+          <div class="help" data-i18n="res.s5.uploadHelp">JPG sau PDF, maxim 5MB. Verificăm conformitatea înainte de confirmare.</div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+
+      <!-- Step 6: Options -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s6opt.title">Servicii opționale</h2>
+        <p class="step-intro" data-i18n="res.s6opt.intro">Alege serviciile pe care dorești să le includem în solicitarea de rezervare. Disponibilitatea se confirmă de echipa Sisi Pisi.</p>
+        <div class="option-grid">
+          <label class="option-card"><input type="checkbox" name="optPlay" data-price="50"><span data-i18n="res.opt.play">Joacă supravegheată suplimentară, 30 minute</span><strong>50 lei</strong></label>
+          <label class="option-card"><input type="checkbox" name="optMedsSimple" data-price="25"><span data-i18n="res.opt.medsSimple">Administrare medicamente simplă, o administrare pe zi</span><strong>25 lei/zi</strong></label>
+          <label class="option-card"><input type="checkbox" name="optMedsExtended" data-price="35"><span data-i18n="res.opt.medsExtended">Administrare medicamente extinsă, două administrări pe zi</span><strong>35 lei/zi</strong></label>
+          <label class="option-card"><input type="checkbox" name="optGrooming" data-price="85"><span data-i18n="res.opt.grooming">Pachet grooming de bază</span><strong>85 lei</strong></label>
+          <label class="option-card"><input type="checkbox" name="optTransportOne" data-price="80"><span data-i18n="res.opt.transportOne">Transport Brașov, un sens</span><strong>80 lei</strong></label>
+          <label class="option-card"><input type="checkbox" name="optTransportRound" data-price="140"><span data-i18n="res.opt.transportRound">Transport Brașov, dus întors</span><strong>140 lei</strong></label>
+        </div>
+        <div class="form-field" style="margin-top: 24px;">
+          <label for="transportAddress" data-i18n="res.opt.transportAddress">Adresă transport, dacă este cazul</label>
+          <input type="text" id="transportAddress" name="transportAddress">
+        </div>
+        <div class="form-field">
+          <label for="optionNotes" data-i18n="res.opt.notes">Observații pentru servicii opționale</label>
+          <textarea id="optionNotes" name="optionNotes" rows="3"></textarea>
+        </div>
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="next" data-i18n="res.btn.next">Continuă</button>
+        </div>
+      </div>
+
+      <!-- Step 7: Summary -->
+      <div class="wizard-step">
+        <h2 data-i18n="res.s6.title">Sumar și acord</h2>
+        <p class="step-intro" data-i18n="res.s6.intro">Verifică datele înainte de trimitere. După trimitere, primești confirmarea pe email în maximum 12 ore.</p>
+
+        <div id="summary-content"></div>
+
+        <div id="terms-error" class="alert error" style="display: none; margin-top: 24px;" data-i18n="res.err.terms">Trebuie să accepți termenii pentru a continua.</div>
+
+        <div style="margin-top: 24px;">
+          <div class="checkbox-row">
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms" data-i18n="res.s6.terms">Sunt de acord cu termenii și condițiile de cazare</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="gdpr" name="gdpr">
+            <label for="gdpr" data-i18n="res.s6.gdpr">Sunt de acord cu prelucrarea datelor cu caracter personal conform GDPR</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="pickupPolicy" name="pickupPolicy">
+            <label for="pickupPolicy" data-i18n="res.s6.pickupPolicy">Am luat la cunoștință politica de ridicare, prelungire și tarifare a zilelor suplimentare.</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="cameraAccess" name="cameraAccess">
+            <label for="cameraAccess" data-i18n="res.s6.cameraAccess">Accept utilizarea camerei IP pentru accesul meu 24/24 și pentru monitorizarea internă a pisicii.</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="vetConsent" name="vetConsent">
+            <label for="vetConsent" data-i18n="res.s6.vetConsent">Accept contactarea medicului veterinar în caz de urgență și suportarea costurilor medicale aferente.</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="whatsappConsent" name="whatsappConsent">
+            <label for="whatsappConsent" data-i18n="res.s6.whatsappConsent">Doresc să primesc comunicări și prin WhatsApp, suplimentar față de email.</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="contract" name="contract">
+            <label for="contract" data-i18n="res.s6.contract">Voi semna electronic fișa de cazare și contractul la check-in.</label>
+          </div>
+        </div>
+
+        <div class="wizard-actions">
+          <button type="button" class="btn-secondary" data-action="back" data-i18n="res.btn.back">Înapoi</button>
+          <button type="button" class="btn-primary" data-action="submit" data-i18n="res.btn.submit">Trimite rezervarea</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="wizard-step" id="success-step">
+        <div style="text-align: center; padding: 40px 0;">
+          <div style="width: 80px; height: 80px; margin: 0 auto 32px; border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold);">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" style="width: 36px; height: 36px;"><path d="M6 16 L13 23 L26 9"/></svg>
+          </div>
+          <h2 data-i18n="res.success.title">Rezervare trimisă.</h2>
+          <p style="color: var(--gray); font-size: 16px; line-height: 1.7; max-width: 540px; margin: 18px auto 32px;" data-i18n="res.success.message">Mulțumim. Echipa noastră verifică datele și revine cu confirmarea pe email în maximum 12 ore. Dacă există vreo problemă cu documentele medicale, te contactăm telefonic.</p>
+          <a href="multumim.html" class="btn-secondary" data-i18n="res.success.next">Vezi pașii următori</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../../Vizual/Logo%20transparent.png" alt="Sisi Pisi">
+        <p data-i18n="footer.tagline">Hotel boutique exclusiv pentru pisici. Operat de Krone Art Gifts SRL.</p>
+        <p style="font-size: 12px; opacity: 0.6;">CUI RO37960836 · J08/2081/2017</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.contact">Contact</h4>
+        <span data-i18n="footer.phone.pending">Telefon disponibil după confirmarea rezervării</span>
+        <a href="mailto:rezervari@sisipisi.ro">rezervari@sisipisi.ro</a>
+        <p style="margin-top:14px; font-size:13px; opacity:0.7;" data-i18n="footer.address">Adresa exactă se comunică după confirmarea rezervării</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.hours">Program</h4>
+        <p style="font-size:13px; opacity:0.85;" data-i18n="footer.hours.weekdays">Zilnic<br>09:00 - 18:00</p>
+      </div>
+      <div>
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <a href="termeni-cazare.html" data-i18n="footer.terms">Termeni de cazare</a>
+        <a href="confidentialitate.html" data-i18n="footer.privacy">Politica de confidențialitate</a>
+        <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
+        <a href="confidentialitate.html#gdpr" data-i18n="footer.gdpr">GDPR</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div data-i18n="footer.copyright">© 2026 Krone Art Gifts SRL · Sisi Pisi Boutique Hotel</div>
+      <div data-i18n="footer.location">Brașov · România</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/i18n_extra.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

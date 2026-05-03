@@ -1,0 +1,9 @@
+Sisi Pisi Site v1.3
+
+Modificări:
+- Conținutul în limba maghiară a fost ajustat pentru un ton mai cald.
+- Termenul maghiar folosit anterior pentru pisică a fost înlocuit cu „cica” și formele gramaticale potrivite.
+- Au fost corectate formulări compuse în maghiară pentru naturalețe, inclusiv expresii legate de bunăstarea pisicii, cazare și descrierea echipamentelor.
+- Sintaxa JavaScript pentru assets/i18n.js și assets/main.js a fost verificată.
+
+Nu au fost modificate structura HTML, CSS sau logica formularului.
