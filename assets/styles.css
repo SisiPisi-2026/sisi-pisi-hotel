@@ -309,7 +309,10 @@ section.tight { padding: 70px 0; }
 .bg-gold-pale { background: var(--gold-pale); }
 
 /* ===== Pillars / cards ===== */
-.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+.pillars-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 56px; }
+.pillars-grid article { grid-column: span 2; }
+.pillars-grid article:nth-child(4) { grid-column: 2 / 4; }
+.pillars-grid article:nth-child(5) { grid-column: 4 / 6; }
 .pillar { text-align: left; }
 .pillar-icon { width: 56px; height: 56px; margin-bottom: 24px; color: var(--gold); }
 .pillar-icon svg { width: 100%; height: 100%; }
