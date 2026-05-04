@@ -17,7 +17,7 @@ const translations = {
     "nav.book": "Rezervă online",
     "footer.tagline": "Hotel boutique exclusiv pentru pisici. Operat de Krone Art Gifts SRL.",
     "footer.contact": "Contact",
-    "footer.address": "Adresa exactă se comunică după confirmarea rezervării",
+    "footer.address": "Brașov, România. Locația exactă se comunică după confirmarea rezervării",
     "footer.hours": "Program",
     "footer.hours.weekdays": "Zilnic<br>09:00 - 18:00",
     "footer.hours.saturday": "",

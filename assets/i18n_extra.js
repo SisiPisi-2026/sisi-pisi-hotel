@@ -1,7 +1,7 @@
 window.translations = window.translations || {};
 window.translations["ro"] = Object.assign(window.translations["ro"] || {}, {
   "topbar.phone": "Contact: rezervari@sisipisi.ro",
-  "footer.address": "Adresa exactă se comunică după confirmarea rezervării",
+  "footer.address": "Brașov, România. Locația exactă se comunică după confirmarea rezervării",
   "footer.phone.pending": "Telefon disponibil după confirmarea rezervării",
   "footer.hours.weekdays": "Zilnic<br>09:00 - 18:00",
   "footer.terms": "Termeni de cazare",
