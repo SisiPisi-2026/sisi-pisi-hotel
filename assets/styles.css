@@ -903,15 +903,17 @@ section.tight { padding: 70px 0; }
   .wizard-actions { flex-direction: column-reverse; }
   .wizard-actions .btn-primary,
   .wizard-actions .btn-secondary { width: 100%; }
-  .site-header .container { gap: 0; }
+  .site-header .container { gap: 0; position: relative; }
   .site-header .logo img.logo-desktop { display: none; }
   .site-header .logo img.logo-mobile { display: block; height: 44px; width: auto; }
   .site-header .btn-primary {
-    margin-left: auto;
-    margin-right: 16px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 8px 14px;
     font-size: 10px;
     letter-spacing: 0.08em;
+    white-space: nowrap;
   }
 }
 
