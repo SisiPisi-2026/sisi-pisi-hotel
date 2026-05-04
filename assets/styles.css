@@ -902,7 +902,10 @@ section.tight { padding: 70px 0; }
   .wizard-actions { flex-direction: column-reverse; }
   .wizard-actions .btn-primary,
   .wizard-actions .btn-secondary { width: 100%; }
+  .site-header .container { gap: 12px; }
   .site-header .btn-primary {
+    flex: 1;
+    text-align: center;
     padding: 8px 14px;
     font-size: 10px;
     letter-spacing: 0.08em;
