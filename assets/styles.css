@@ -882,6 +882,9 @@ section.tight { padding: 70px 0; }
   .footer-grid,
   .contact-grid,
   .form-grid { grid-template-columns: 1fr; gap: 40px; }
+  .pillars-grid article,
+  .pillars-grid article:nth-child(4),
+  .pillars-grid article:nth-child(5) { grid-column: 1 / -1; }
   .footer-grid { gap: 36px; }
   section { padding: 70px 0; }
   .hero { min-height: 75vh; }
