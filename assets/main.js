@@ -141,6 +141,9 @@
       var ok = true;
       if (!ci) ok = showError('checkin', 'res.err.required') && ok;
       if (!co) ok = showError('checkout', 'res.err.required') && ok;
+      var today = new Date(); today.setHours(0,0,0,0);
+      var checkinDate = new Date(ci);
+      if (ci && checkinDate < today) ok = showError('checkin', 'res.err.pastDate') && ok;
       if (ci && co && new Date(co) <= new Date(ci)) ok = showError('checkout', 'res.err.dateOrder') && ok;
       if (ok) { data.checkin = ci; data.checkout = co; data.checkinTime = value('checkinTime'); data.checkoutTime = value('checkoutTime'); data.nights = Math.ceil((new Date(co) - new Date(ci)) / 86400000); }
       return ok;
@@ -266,6 +269,6 @@
     wizard.querySelectorAll('[data-action="back"]').forEach(function(btn) { btn.addEventListener('click', function() { showStep(currentStep - 1); }); });
     var submitBtn = wizard.querySelector('[data-action="submit"]');
     if (submitBtn) submitBtn.addEventListener('click', function() { if (!validateStep7()) return; wizard.querySelectorAll('.wizard-step').forEach(function(s) { s.classList.remove('active'); }); wizard.querySelector('.wizard-progress').style.display = 'none'; var success = wizard.querySelector('#success-step'); if (success) success.classList.add('active'); window.scrollTo({ top: wizard.offsetTop - 80, behavior: 'smooth' }); console.log('Booking request prepared. Backend integration required for real submission.', data); });
-    var checkin = field('checkin'); if (checkin) { var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1); checkin.min = tomorrow.toISOString().split('T')[0]; }
+    var checkin = field('checkin'); if (checkin) { var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1); checkin.min = tomorrow.toISOString().split('T')[0]; checkin.addEventListener('change', function() { var checkout = field('checkout'); if (checkout && checkin.value) { var nextDay = new Date(checkin.value); nextDay.setDate(nextDay.getDate() + 1); checkout.min = nextDay.toISOString().split('T')[0]; if (checkout.value && new Date(checkout.value) <= new Date(checkin.value)) checkout.value = ''; } }); }
   });
 })();

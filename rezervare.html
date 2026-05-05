@@ -77,7 +77,7 @@
           </div>
           <div class="form-field">
             <label data-i18n="res.checkout">Data check-out <span class="required">*</span></label>
-            <input type="date" name="checkout">
+            <input type="date" name="checkout" min="">
             <div class="error-msg"></div>
           </div>
           <div class="form-field">
@@ -426,6 +426,7 @@
       <div class="wizard-step">
         <h2 data-i18n="res.s6.title">Sumar și acord</h2>
         <p class="step-intro" data-i18n="res.s6.intro">Verifică datele înainte de trimitere. După trimitere, primești confirmarea pe email în maximum 12 ore.</p>
+        <p class="step-intro" data-i18n="res.s6.summaryNote"></p>
 
         <div id="summary-content"></div>
 
@@ -434,31 +435,31 @@
         <div style="margin-top: 24px;">
           <div class="checkbox-row">
             <input type="checkbox" id="terms" name="terms">
-            <label for="terms" data-i18n="res.s6.terms">Sunt de acord cu termenii și condițiile de cazare</label>
+            <label for="terms" data-i18n="res.s6.terms"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="gdpr" name="gdpr">
-            <label for="gdpr" data-i18n="res.s6.gdpr">Sunt de acord cu prelucrarea datelor cu caracter personal conform GDPR</label>
+            <label for="gdpr" data-i18n="res.s6.gdpr"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="pickupPolicy" name="pickupPolicy">
-            <label for="pickupPolicy" data-i18n="res.s6.pickupPolicy">Am luat la cunoștință politica de ridicare, prelungire și tarifare a zilelor suplimentare.</label>
+            <label for="pickupPolicy" data-i18n="res.s6.pickupPolicy"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="cameraAccess" name="cameraAccess">
-            <label for="cameraAccess" data-i18n="res.s6.cameraAccess">Accept utilizarea camerei IP pentru accesul meu 24/24 și pentru monitorizarea internă a pisicii.</label>
+            <label for="cameraAccess" data-i18n="res.s6.cameraAccess"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="vetConsent" name="vetConsent">
-            <label for="vetConsent" data-i18n="res.s6.vetConsent">Accept contactarea medicului veterinar în caz de urgență și suportarea costurilor medicale aferente.</label>
+            <label for="vetConsent" data-i18n="res.s6.vetConsent"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="whatsappConsent" name="whatsappConsent">
-            <label for="whatsappConsent" data-i18n="res.s6.whatsappConsent">Doresc să primesc comunicări și prin WhatsApp, suplimentar față de email.</label>
+            <label for="whatsappConsent" data-i18n="res.s6.whatsappConsent"></label>
           </div>
           <div class="checkbox-row">
             <input type="checkbox" id="contract" name="contract">
-            <label for="contract" data-i18n="res.s6.contract">Voi semna electronic fișa de cazare și contractul la check-in.</label>
+            <label for="contract" data-i18n="res.s6.contract"></label>
           </div>
         </div>
 
