@@ -471,7 +471,7 @@ section.tight { padding: 70px 0; }
 .req-list.on-light .check { color: var(--gold); }
 
 /* ===== CTA Final ===== */
-.cta-final { text-align: center; padding: 100px 0; }
+.cta-final { text-align: center; padding: 30px 0; }
 .cta-final h2 {
   font-size: clamp(34px, 4.5vw, 56px);
   margin-bottom: 16px;
