@@ -311,7 +311,8 @@ section.tight { padding: 70px 0; }
 
 /* ===== Pillars / cards ===== */
 .pillars-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 56px; }
-.pillars-grid article { grid-column: span 2; }
+.pillars-grid article,
+.pillars-grid .pillar { grid-column: span 2; }
 .pillars-grid article:nth-child(4) { grid-column: 2 / 4; }
 .pillars-grid article:nth-child(5) { grid-column: 4 / 6; }
 .pillar { text-align: left; }
@@ -885,6 +886,7 @@ section.tight { padding: 70px 0; }
   .contact-grid,
   .form-grid { grid-template-columns: 1fr; gap: 40px; }
   .pillars-grid article,
+  .pillars-grid .pillar,
   .pillars-grid article:nth-child(4),
   .pillars-grid article:nth-child(5) { grid-column: 1 / -1; }
   .footer-grid { gap: 36px; }

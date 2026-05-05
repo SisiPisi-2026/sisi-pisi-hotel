@@ -18,6 +18,39 @@ if (-not $status) {
     exit 0
 }
 
+# Detecteaza comanda Python disponibila pe sistem
+$pyCmd = $null
+foreach ($cmd in @("py", "python", "python3")) {
+    try {
+        $ver = & $cmd --version 2>&1
+        if ($ver -match "Python") {
+            $pyCmd = $cmd
+            break
+        }
+    } catch {}
+}
+
+if ($pyCmd) {
+    Write-Host "  Python detectat: $pyCmd" -ForegroundColor Yellow
+
+    # Verifica si instaleaza deep-translator daca lipseste
+    & $pyCmd -c "import deep_translator" 2>$null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "  Instalare deep-translator..." -ForegroundColor Yellow
+        & $pyCmd -m pip install deep-translator -q 2>$null
+    }
+
+    # Ruleaza sincronizarea i18n
+    Write-Host "  Sincronizare i18n.js cu HTML (RO + EN + HU)..." -ForegroundColor Yellow
+    & $pyCmd sync-i18n.py
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "  ATENTIE: sync-i18n.py a esuat. Continui deploy fara sincronizare." -ForegroundColor Yellow
+    }
+} else {
+    Write-Host "  Python negasit. Sincronizarea i18n.js este sarita." -ForegroundColor Yellow
+    Write-Host "  Instaleaza Python de la https://python.org pentru traduceri automate." -ForegroundColor Yellow
+}
+
 Write-Host "  Uploading toate modificarile..." -ForegroundColor Yellow
 
 $mesaj = "Update $(Get-Date -Format 'dd.MM.yyyy HH:mm')"
