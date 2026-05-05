@@ -40,7 +40,7 @@ const translations = {
     "pillars.title": "Trei principii. Zero compromisuri.",
     "pillars.lead": "Premium înseamnă spațiu privat, monitorizare permanentă și reguli clare, aplicate zi de zi.",
     "pillar.1.title": "Suită privată",
-    "pillar.1.text": "Fără contact între animale. Fiecare pisică are propriul spațiu, cu loc de odihnă, polițe de cățărare, zonă de relaxare și acces vizual controlat.",
+    "pillar.1.text": "Fără contact între animale. Fiecare pisică are propriul spațiu, cu loc de odihnă, polițe de cățărare și zonă de relaxare.",
     "pillar.2.title": "Monitorizare 24/7",
     "pillar.2.text": "Fiecare suită are o cameră video dedicată și acces securizat pentru proprietar. Îți poți vedea pisica în timp real, pe toată durata cazării.",
     "pillar.3.title": "Protocoale interne",
