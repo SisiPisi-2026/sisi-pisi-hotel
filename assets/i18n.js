@@ -1565,4 +1565,4 @@ const translations = {
   }
 };
 
-if (typeof window !== 'undefined') window.translations = transl
+if (typeof window !== 'undefined') window.translations = translations
