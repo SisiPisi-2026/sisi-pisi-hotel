@@ -231,6 +231,32 @@
       var discountRate = data.nights > 20 ? 0.10 : (data.nights > 10 ? 0.05 : 0);
       var discount = subtotal * discountRate;
       var total = subtotal - discount;
+
+      // === CALCUL AVANS ===
+      var _svPeriods = [
+        { start: '12-20', end: '01-05' },
+        { start: '04-01', end: '04-15' },
+        { start: '06-15', end: '08-31' },
+        { start: '10-26', end: '11-01' },
+        { start: '02-15', end: '02-23' }
+      ];
+      var sezonVarf = (function(checkin) {
+        if (!checkin) return false;
+        var d = new Date(checkin); if (isNaN(d.getTime())) return false;
+        var mmdd = String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        return _svPeriods.some(function(p) {
+          if (p.start <= p.end) return mmdd >= p.start && mmdd <= p.end;
+          return mmdd >= p.start || mmdd <= p.end;
+        });
+      })(data.checkin);
+      var avansRate = sezonVarf ? 0.50 : 0.30;
+      var avansSuma = Math.round(total * avansRate);
+      var avansDif = total - avansSuma;
+      if (!data.referinta) {
+        var _rNow = new Date();
+        data.referinta = 'SP-' + _rNow.getFullYear() + String(_rNow.getMonth()+1).padStart(2,'0') + String(_rNow.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random()*9000+1000);
+      }
+
       var optionsHtml = data.options && data.options.length ? data.options.map(function(o){ return '<dt>' + o.name + '</dt><dd>' + money(o.perDay ? o.price * data.nights : o.price) + '</dd>'; }).join('') : '<dt>' + t('res.s6.noOptions') + '</dt><dd>—</dd>';
       var summary = wizard.querySelector('#summary-content'); if (!summary) return;
       summary.innerHTML =
@@ -258,6 +284,36 @@
         '<div class="summary-total"><span class="label">' + t('res.s6.totalLabel') + '</span><span class="value">' + money(total) + '</span></div>' +
         (discount ? '<p style="font-size:12px;color:var(--gray);margin-top:8px;">' + t('res.s6.discountApplied') + ' ' + Math.round(discountRate * 100) + '%</p>' : '') +
         '<p style="font-size:12px;color:var(--gray);margin-top:10px;line-height:1.6;">' + t('res.s6.totalNote') + '</p>';
+
+      // === BLOC AVANS ===
+      var pb = wizard.querySelector('#payment-block');
+      if (pb) {
+        pb.innerHTML =
+          '<div class="sumar-rezervare">' +
+            '<p><span class="sumar-label">Referință rezervare</span><br><strong class="sumar-ref">' + data.referinta + '</strong></p>' +
+            '<p style="margin-top:12px;"><span class="sumar-label">Total sejur estimat</span><br><strong class="sumar-total-val">' + money(total) + '</strong></p>' +
+          '</div>' +
+          '<div class="bloc-avans">' +
+            '<h3>Confirmarea rezervării</h3>' +
+            '<p class="text-avans">Pentru confirmarea rezervării, transferă un avans de <strong>' + Math.round(avansRate * 100) + '%</strong> (<strong>' + money(avansSuma) + '</strong>) în următoarele 48 de ore.</p>' +
+            (sezonVarf ? '<div class="avertizare-sezon-varf"><strong>Sezon de vârf.</strong> Avansul este non-refundable. Modificarea datelor este permisă cu minimum 14 zile înainte, anularea nu.</div>' : '') +
+            '<div class="date-bancare">' +
+              '<p><strong>Beneficiar:</strong> Krone Art Gifts SRL</p>' +
+              '<p><strong>IBAN:</strong> RO60 BRDE 080S V614 4047 0800</p>' +
+              '<p><strong>Bancă:</strong> Banca Română pentru Dezvoltare (BRD)</p>' +
+              '<p><strong>Referință obligatorie:</strong> <span class="ref-highlight">' + data.referinta + '</span></p>' +
+            '</div>' +
+            '<p class="diferenta-info">Diferența de <strong>' + money(avansDif) + '</strong> se achită la check-in, prin card sau transfer bancar.</p>' +
+            '<div class="instructiuni-transfer">' +
+              '<p>După efectuarea transferului, trimite dovada pe <a href="mailto:rezervari@sisipisi.ro">rezervari@sisipisi.ro</a> sau WhatsApp.</p>' +
+              '<p>Confirmarea finală a rezervării sosește pe email în 24 de ore după primirea avansului.</p>' +
+            '</div>' +
+          '</div>';
+        var rh = wizard.querySelector('#referinta-hidden'); if (rh) rh.value = data.referinta;
+        var ah = wizard.querySelector('#avans-hidden'); if (ah) ah.value = avansSuma;
+        var th = wizard.querySelector('#total-hidden'); if (th) th.value = Math.round(total);
+        var svh = wizard.querySelector('#sezon-varf-hidden'); if (svh) svh.value = sezonVarf ? 'da' : 'nu';
+      }
     }
 
     wizard.querySelectorAll('input[name="suite"]').forEach(function(input) { input.addEventListener('change', function() { wizard.querySelectorAll('.suite-option').forEach(function(opt) { opt.classList.remove('selected'); }); input.closest('.suite-option').classList.add('selected'); var alertBox = wizard.querySelector('#suite-error'); if (alertBox) alertBox.style.display = 'none'; }); });

@@ -1153,6 +1153,25 @@ section.tight { padding: 70px 0; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 @media (max-width: 700px) { .option-grid { grid-template-columns: 1fr; } .option-card { grid-template-columns: 22px 1fr; } .option-card strong { grid-column: 2; } }
 
+/* === MODUL AVANS REZERVARE === */
+.sumar-rezervare { background: var(--charcoal); color: #fff; padding: 20px 24px; border-radius: 8px; margin: 28px 0 0; }
+.sumar-rezervare .sumar-label { font-size: 12px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em; }
+.sumar-rezervare .sumar-ref { font-family: 'Courier New', monospace; font-size: 1.05rem; letter-spacing: 0.04em; color: var(--gold); }
+.sumar-rezervare .sumar-total-val { font-size: 1.35rem; color: var(--gold); font-family: 'Lora', serif; }
+.bloc-avans { background: var(--cream); border-left: 3px solid var(--gold); padding: 24px; margin: 20px 0 28px; border-radius: 0 8px 8px 0; }
+.bloc-avans h3 { margin-top: 0; color: var(--charcoal); font-size: 1.1rem; font-family: 'Lora', serif; }
+.text-avans { font-size: 1.02rem; line-height: 1.65; margin-bottom: 20px; }
+.text-avans strong { color: var(--charcoal); }
+.date-bancare { background: #fff; border: 1px solid rgba(184,151,58,0.25); padding: 16px 20px; margin: 20px 0; border-radius: 6px; }
+.date-bancare p { margin: 7px 0; font-size: 0.93rem; line-height: 1.5; }
+.date-bancare strong { display: inline-block; min-width: 150px; font-weight: 600; }
+.date-bancare .ref-highlight { font-family: 'Courier New', monospace; font-weight: 700; color: var(--charcoal); background: var(--gold-pale); padding: 1px 6px; border-radius: 3px; }
+.avertizare-sezon-varf { background: #FFF8E1; border: 1px solid var(--gold); padding: 14px 18px; margin: 16px 0; border-radius: 6px; font-size: 0.95rem; line-height: 1.6; }
+.diferenta-info { margin-top: 16px; font-size: 0.95rem; line-height: 1.6; }
+.instructiuni-transfer { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(184,151,58,0.2); font-size: 0.93rem; line-height: 1.65; }
+.instructiuni-transfer a { color: var(--gold); font-weight: 500; text-decoration: none; }
+.instructiuni-transfer a:hover { text-decoration: underline; }
+
 /* =========================================================
    AUTOCOMPLETE + TAG INPUT WIDGETS v1.5
    ========================================================= */
