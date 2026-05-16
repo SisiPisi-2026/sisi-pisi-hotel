@@ -97,6 +97,15 @@
     var wizard = document.querySelector('.wizard');
     if (!wizard) return;
 
+    // Set max date on birth inputs to today (no future dates allowed)
+    (function() {
+      var todayStr = new Date().toISOString().slice(0, 10);
+      ['birth', 'cat2birth'].forEach(function(n) {
+        var el = wizard.querySelector('[name="' + n + '"]');
+        if (el) el.setAttribute('max', todayStr);
+      });
+    })();
+
     var currentStep = 1;
     var totalSteps = 7;
     var data = {};
@@ -176,7 +185,7 @@
         ['cat2name','cat2birth','cat2sex'].forEach(function(f) { var v = value(f); if (!v) ok = showError(f, 'res.err.required') && ok; else data[f] = v; });
       }
       data.food = value('food'); data.meds = value('meds'); data.behaviorNotes = value('behaviorNotes'); data.personalItems = value('personalItems'); data.cat2notes = value('cat2notes');
-      if (data.birth) { var ageMonths = (Date.now() - new Date(data.birth).getTime()) / (1000 * 60 * 60 * 24 * 30); if (ageMonths < 4) ok = showError('birth', 'res.err.age') && ok; }
+      if (data.birth) { var bd = new Date(data.birth); bd.setHours(0,0,0,0); var today = new Date(); today.setHours(0,0,0,0); if (bd > today) ok = showError('birth', 'res.err.futureDate') && ok; }
       return ok;
     }
     function validateStep5() {
