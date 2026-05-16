@@ -1151,3 +1151,195 @@ section.tight { padding: 70px 0; }
 .option-card strong { font-family: 'Lora', serif; color: var(--gold); white-space: nowrap; font-size: 16px; }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 @media (max-width: 700px) { .option-grid { grid-template-columns: 1fr; } .option-card { grid-template-columns: 22px 1fr; } .option-card strong { grid-column: 2; } }
+
+/* =========================================================
+   AUTOCOMPLETE + TAG INPUT WIDGETS v1.5
+   ========================================================= */
+
+/* ----- highlight mark (comun combobox + tag dropdown) ----- */
+.ac-mark {
+  background: rgba(184, 151, 58, 0.22);
+  color: var(--charcoal);
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 700;
+  padding: 0 1px;
+}
+
+/* ---- Breed combobox ---- */
+.ac-wrap {
+  position: relative;
+}
+
+.ac-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  list-style: none;
+  z-index: 400;
+  box-shadow: 0 10px 28px -6px rgba(0,0,0,0.14);
+  padding: 4px 0;
+}
+.ac-dropdown.open { display: block; }
+
+.ac-dropdown li {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.ac-dropdown li:hover,
+.ac-dropdown li.active { background: var(--gold-pale); }
+
+/* ---- Tag input wrapper ---- */
+.tag-input-wrap {
+  position: relative;
+}
+
+.tag-input-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1.5px solid var(--gold-pale);
+  border-radius: 8px;
+  background: var(--cream);
+  min-height: 48px;
+  align-items: center;
+  cursor: text;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.tag-input-tags:focus-within {
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(184, 151, 58, 0.12);
+}
+
+/* ---- Tag chips ---- */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--gold-pale);
+  border: 1px solid rgba(184, 151, 58, 0.35);
+  border-radius: 6px;
+  padding: 4px 6px 4px 10px;
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: var(--charcoal);
+  line-height: 1.3;
+  max-width: 220px;
+  animation: chipIn 0.14s ease;
+}
+@keyframes chipIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+.tag-chip > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tag-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  background: none;
+  border: none;
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(184, 151, 58, 0.8);
+  font-size: 16px;
+  line-height: 1;
+  transition: color 0.14s, background 0.14s;
+}
+.tag-remove:hover {
+  color: var(--error);
+  background: rgba(181, 86, 43, 0.1);
+}
+
+/* ---- Text input inside tags area ---- */
+.form-field .tag-input-text {
+  flex: 1;
+  min-width: 110px;
+  width: auto;
+  padding: 4px 6px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font-size: 14px;
+  color: var(--charcoal);
+  box-shadow: none;
+}
+.form-field .tag-input-text:focus {
+  outline: none;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.form-field .tag-input-text::placeholder { color: var(--gray); opacity: 0.7; }
+
+/* ---- Tag dropdown ---- */
+.tag-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border: 1.5px solid var(--gold);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 220px;
+  overflow-y: auto;
+  list-style: none;
+  z-index: 400;
+  box-shadow: 0 10px 28px -6px rgba(0,0,0,0.14);
+  padding: 4px 0;
+}
+.tag-dropdown.open { display: block; }
+
+.tag-dropdown li {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--charcoal);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.tag-dropdown li:hover,
+.tag-dropdown li.active { background: var(--gold-pale); }
+
+/* ---- Stare eroare pe tag input ---- */
+.form-field:has(input[type="hidden"].error) .tag-input-tags {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(181, 86, 43, 0.1);
+}
+
+/* ---- Scrollbar styling pentru dropdown-uri ---- */
+.ac-dropdown::-webkit-scrollbar,
+.tag-dropdown::-webkit-scrollbar { width: 6px; }
+.ac-dropdown::-webkit-scrollbar-track,
+.tag-dropdown::-webkit-scrollbar-track { background: transparent; }
+.ac-dropdown::-webkit-scrollbar-thumb,
+.tag-dropdown::-webkit-scrollbar-thumb {
+  background: rgba(184, 151, 58, 0.3);
+  border-radius: 3px;
+}
+.ac-dropdown::-webkit-scrollbar-thumb:hover,
+.tag-dropdown::-webkit-scrollbar-thumb:hover { background: rgba(184, 151, 58, 0.6); }

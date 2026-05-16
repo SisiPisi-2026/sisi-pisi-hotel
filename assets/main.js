@@ -272,3 +272,368 @@
     var checkin = field('checkin'); if (checkin) { var tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1); checkin.min = tomorrow.toISOString().split('T')[0]; checkin.addEventListener('change', function() { var checkout = field('checkout'); if (checkout && checkin.value) { var nextDay = new Date(checkin.value); nextDay.setDate(nextDay.getDate() + 1); checkout.min = nextDay.toISOString().split('T')[0]; if (checkout.value && new Date(checkout.value) <= new Date(checkin.value)) checkout.value = ''; } }); }
   });
 })();
+
+/* =========================================================
+   CUSTOM INPUT WIDGETS v1.5
+   Breed combobox · Behavior & Food-brand tag inputs
+   Vanilla JS, fără librării externe.
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ---------- utilitare comune ---------- */
+  function escHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function highlight(text, query) {
+    if (!query) return escHtml(text);
+    var i = text.toLowerCase().indexOf(query.toLowerCase());
+    if (i === -1) return escHtml(text);
+    return (
+      escHtml(text.slice(0, i)) +
+      '<mark class="ac-mark">' + escHtml(text.slice(i, i + query.length)) + '</mark>' +
+      escHtml(text.slice(i + query.length))
+    );
+  }
+
+  /* =========================================================
+     BREED COMBOBOX
+     - Dropdown cu highlight pe literele tastate
+     - Navigare: ArrowUp/Down, Enter, Escape
+     ========================================================= */
+  function initBreedCombobox(wizard) {
+    var BREEDS = [
+      'Abyssinian', 'American Bobtail', 'American Curl', 'American Shorthair',
+      'Balinese', 'Bengal', 'Birman', 'Bombay',
+      'British Longhair', 'British Shorthair',
+      'Burmese', 'Burmilla',
+      'Chartreux', 'Chausie', 'Cornish Rex',
+      'Devon Rex', 'Domestic Longhair', 'Domestic Shorthair',
+      'Egyptian Mau', 'Europeană', 'Exotic Shorthair',
+      'Havana Brown', 'Himalayan',
+      'Japanese Bobtail', 'Khao Manee', 'Korat',
+      'LaPerm', 'Lykoi',
+      'Maine Coon', 'Manx', 'Munchkin',
+      'Nebelung', 'Norwegian Forest Cat',
+      'Ocicat', 'Oriental Shorthair',
+      'Persian', 'Peterbald', 'Pixiebob',
+      'Ragamuffin', 'Ragdoll', 'Russian Blue',
+      'Savannah', 'Scottish Fold', 'Scottish Straight',
+      'Selkirk Rex', 'Siamese', 'Siberian',
+      'Singapura', 'Snowshoe', 'Somali', 'Sphynx',
+      'Thai', 'Tonkinese',
+      'Turkish Angora', 'Turkish Van',
+      'York Chocolate'
+    ];
+
+    var input = wizard.querySelector('input[name="breed"]');
+    if (!input) return;
+
+    /* wrap */
+    var wrap = document.createElement('div');
+    wrap.className = 'ac-wrap';
+    input.parentNode.insertBefore(wrap, input);
+    wrap.appendChild(input);
+
+    /* dropdown */
+    var dropdown = document.createElement('ul');
+    dropdown.className = 'ac-dropdown';
+    dropdown.setAttribute('role', 'listbox');
+    dropdown.setAttribute('aria-label', 'Rase disponibile');
+    wrap.appendChild(dropdown);
+
+    var activeIdx = -1;
+
+    function openList(query) {
+      var q = (query || '').trim().toLowerCase();
+      var matches = BREEDS.filter(function (b) {
+        return !q || b.toLowerCase().indexOf(q) !== -1;
+      });
+      dropdown.innerHTML = '';
+      activeIdx = -1;
+      if (!matches.length) { dropdown.classList.remove('open'); return; }
+      matches.forEach(function (breed) {
+        var li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.innerHTML = highlight(breed, q);
+        li.dataset.value = breed;
+        li.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          commit(breed);
+        });
+        dropdown.appendChild(li);
+      });
+      dropdown.classList.add('open');
+    }
+
+    function commit(value) {
+      input.value = value;
+      dropdown.classList.remove('open');
+      activeIdx = -1;
+      input.dispatchEvent(new Event('change'));
+    }
+
+    function moveActive(dir) {
+      var items = dropdown.querySelectorAll('li');
+      if (!items.length) return;
+      activeIdx = Math.max(0, Math.min(items.length - 1, activeIdx + dir));
+      items.forEach(function (li, i) {
+        li.classList.toggle('active', i === activeIdx);
+        if (i === activeIdx) li.scrollIntoView({ block: 'nearest' });
+      });
+    }
+
+    input.setAttribute('role', 'combobox');
+    input.setAttribute('aria-expanded', 'false');
+    input.setAttribute('aria-autocomplete', 'list');
+
+    input.addEventListener('input',  function () { openList(input.value); input.setAttribute('aria-expanded', 'true'); });
+    input.addEventListener('focus',  function () { openList(input.value); });
+    input.addEventListener('blur',   function () {
+      setTimeout(function () {
+        dropdown.classList.remove('open');
+        activeIdx = -1;
+        input.setAttribute('aria-expanded', 'false');
+      }, 160);
+    });
+    input.addEventListener('keydown', function (e) {
+      if (!dropdown.classList.contains('open')) return;
+      var items = dropdown.querySelectorAll('li');
+      if (e.key === 'ArrowDown')  { e.preventDefault(); moveActive(1); }
+      else if (e.key === 'ArrowUp')   { e.preventDefault(); moveActive(-1); }
+      else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIdx >= 0 && items[activeIdx]) { commit(items[activeIdx].dataset.value); }
+        else if (items.length === 1)             { commit(items[0].dataset.value); }
+      }
+      else if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        activeIdx = -1;
+        input.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* =========================================================
+     TAG INPUT (multi-select cu chips)
+     - Click sau Enter adaugă tag
+     - × sau Backspace pe câmp gol elimină ultimul tag
+     - cfg: { name, placeholder, options[] }
+     ========================================================= */
+  function initTagInput(wizard, cfg) {
+    var hidden = wizard.querySelector('input[name="' + cfg.name + '"]');
+    if (!hidden) return;
+
+    /* transformăm input-ul original în câmp hidden —
+       rămâne în .form-field pentru ca showError() să funcționeze */
+    hidden.type = 'hidden';
+
+    /* ---- construim widget-ul ---- */
+    var widget   = document.createElement('div');
+    widget.className = 'tag-input-wrap';
+
+    var tagsRow  = document.createElement('div');
+    tagsRow.className = 'tag-input-tags';
+    tagsRow.setAttribute('role', 'group');
+
+    var textInput = document.createElement('input');
+    textInput.type = 'text';
+    textInput.className = 'tag-input-text';
+    textInput.placeholder = cfg.placeholder || 'Caută sau alege...';
+    textInput.setAttribute('autocomplete', 'off');
+    textInput.setAttribute('aria-label', cfg.ariaLabel || cfg.name);
+
+    var dropdown = document.createElement('ul');
+    dropdown.className = 'tag-dropdown';
+    dropdown.setAttribute('role', 'listbox');
+
+    tagsRow.appendChild(textInput);
+    widget.appendChild(tagsRow);
+    widget.appendChild(dropdown);
+
+    /* inserăm widget-ul ÎNAINTE de hidden input (hidden rămâne în .form-field) */
+    hidden.parentNode.insertBefore(widget, hidden);
+
+    /* legăm label-ul de noul text input */
+    var label = hidden.parentNode.querySelector('label');
+    if (label) {
+      var tid = 'tag-text-' + cfg.name;
+      textInput.id = tid;
+      label.setAttribute('for', tid);
+    }
+
+    /* ---- stare ---- */
+    var selected = [];
+    var activeIdx = -1;
+
+    /* ---- sincronizare cu câmpul hidden + curățare erori ---- */
+    function syncHidden() {
+      hidden.value = selected.join(', ');
+      hidden.classList.remove('error');
+      var formField = widget.parentNode;
+      var errEl = formField && formField.querySelector('.error-msg');
+      if (errEl) errEl.classList.remove('show');
+      hidden.dispatchEvent(new Event('change'));
+    }
+
+    /* ---- tag management ---- */
+    function addTag(val) {
+      val = (val || '').trim();
+      if (!val || selected.indexOf(val) !== -1) return;
+      selected.push(val);
+      renderTags();
+      syncHidden();
+      textInput.value = '';
+      renderDropdown('');
+    }
+
+    function removeTag(val) {
+      selected = selected.filter(function (t) { return t !== val; });
+      renderTags();
+      syncHidden();
+    }
+
+    function renderTags() {
+      widget.querySelectorAll('.tag-chip').forEach(function (c) { c.remove(); });
+      selected.forEach(function (tag) {
+        var chip = document.createElement('span');
+        chip.className = 'tag-chip';
+        chip.setAttribute('aria-label', tag);
+
+        var lbl = document.createElement('span');
+        lbl.textContent = tag;
+
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tag-remove';
+        btn.setAttribute('aria-label', 'Elimină ' + tag);
+        btn.innerHTML = '&times;';
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          removeTag(tag);
+          textInput.focus();
+        });
+
+        chip.appendChild(lbl);
+        chip.appendChild(btn);
+        tagsRow.insertBefore(chip, textInput);
+      });
+    }
+
+    /* ---- dropdown ---- */
+    function renderDropdown(query) {
+      var q = (query || '').trim().toLowerCase();
+      var avail = cfg.options.filter(function (o) {
+        return selected.indexOf(o) === -1;
+      });
+      var matches = q
+        ? avail.filter(function (o) { return o.toLowerCase().indexOf(q) !== -1; })
+        : avail;
+
+      dropdown.innerHTML = '';
+      activeIdx = -1;
+
+      if (!matches.length) { dropdown.classList.remove('open'); return; }
+
+      matches.forEach(function (opt) {
+        var li = document.createElement('li');
+        li.setAttribute('role', 'option');
+        li.innerHTML = highlight(opt, q);
+        li.dataset.value = opt;
+        li.addEventListener('mousedown', function (e) {
+          e.preventDefault();
+          addTag(opt);
+          textInput.focus();
+        });
+        dropdown.appendChild(li);
+      });
+      dropdown.classList.add('open');
+    }
+
+    function moveActive(dir) {
+      var items = dropdown.querySelectorAll('li');
+      if (!items.length) return;
+      activeIdx = Math.max(0, Math.min(items.length - 1, activeIdx + dir));
+      items.forEach(function (li, i) {
+        li.classList.toggle('active', i === activeIdx);
+        if (i === activeIdx) li.scrollIntoView({ block: 'nearest' });
+      });
+    }
+
+    /* ---- event listeners ---- */
+    textInput.addEventListener('focus', function () { renderDropdown(textInput.value); });
+    textInput.addEventListener('input', function () { renderDropdown(textInput.value); });
+    textInput.addEventListener('blur',  function () {
+      setTimeout(function () {
+        if (!widget.contains(document.activeElement)) {
+          dropdown.classList.remove('open');
+          activeIdx = -1;
+        }
+      }, 160);
+    });
+    textInput.addEventListener('keydown', function (e) {
+      var items = dropdown.querySelectorAll('li');
+      if (e.key === 'ArrowDown')  { e.preventDefault(); moveActive(1); }
+      else if (e.key === 'ArrowUp')   { e.preventDefault(); moveActive(-1); }
+      else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (activeIdx >= 0 && items[activeIdx]) {
+          addTag(items[activeIdx].dataset.value);
+        } else if (items.length > 0 && textInput.value.trim()) {
+          addTag(items[0].dataset.value);
+        }
+      }
+      else if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        activeIdx = -1;
+      }
+      else if (e.key === 'Backspace' && !textInput.value && selected.length) {
+        removeTag(selected[selected.length - 1]);
+      }
+    });
+
+    /* click pe zona de tag-uri → focus pe câmpul de text */
+    tagsRow.addEventListener('click', function (e) {
+      if (e.target === tagsRow) textInput.focus();
+    });
+  }
+
+  /* =========================================================
+     INIȚIALIZARE
+     ========================================================= */
+  document.addEventListener('DOMContentLoaded', function () {
+    var wizard = document.querySelector('.wizard');
+    if (!wizard) return;
+
+    initBreedCombobox(wizard);
+
+    initTagInput(wizard, {
+      name: 'behavior',
+      placeholder: 'Caută sau alege...',
+      ariaLabel: 'Comportament pisică',
+      options: [
+        'Timidă', 'Sociabilă', 'Anxioasă', 'Jucăușă', 'Calmă', 'Vocală',
+        'Independentă', 'Afectuoasă', 'Fricoasă în medii noi',
+        'Se adaptează ușor', 'Tolerantă la manipulare', 'Sensibilă la zgomot'
+      ]
+    });
+
+    initTagInput(wizard, {
+      name: 'foodBrand',
+      placeholder: 'Caută marcă...',
+      ariaLabel: 'Marcă hrană',
+      options: [
+        'Royal Canin', 'Purina One', "Hill's Science Plan", 'Orijen', 'Acana',
+        'Farmina N&D', 'Brit Care', 'Happy Cat', 'Josera', 'Animonda',
+        'Felix', 'Whiskas', 'Schesir', 'Almo Nature', 'Ziwi Peak',
+        "Lily's Kitchen", 'Edgard & Cooper', 'Instinct', 'Merrick',
+        'Purina Pro Plan', 'Sheba', 'Applaws', 'Bozita', 'Iams'
+      ]
+    });
+  });
+
+})();
