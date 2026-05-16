@@ -1005,7 +1005,7 @@ section.tight { padding: 70px 0; }
 }
 .hero .container {
   padding-top: clamp(54px, 7vh, 92px);
-  padding-bottom: clamp(206px, 27vh, 300px);
+  padding-bottom: clamp(126px, 20vh, 220px);
 }
 .hero-content {
   width: min(860px, 100%);
