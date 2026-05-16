@@ -1149,6 +1149,7 @@ section.tight { padding: 70px 0; }
 .option-card input { margin-top: 3px; accent-color: var(--gold); }
 .option-card span { font-size: 14px; line-height: 1.5; }
 .option-card strong { font-family: 'Lora', serif; color: var(--gold); white-space: nowrap; font-size: 16px; }
+.option-hint { display: block; font-size: 12px; color: var(--gray); line-height: 1.5; margin: -8px 0 8px; padding: 6px 12px; background: rgba(184,151,58,0.06); border-left: 2px solid var(--gold-pale); }
 a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 @media (max-width: 700px) { .option-grid { grid-template-columns: 1fr; } .option-card { grid-template-columns: 22px 1fr; } .option-card strong { grid-column: 2; } }
 

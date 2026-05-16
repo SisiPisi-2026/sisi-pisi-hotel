@@ -97,10 +97,10 @@
     var wizard = document.querySelector('.wizard');
     if (!wizard) return;
 
-    // Set max date on birth inputs to today (no future dates allowed)
+    // Set max date on date inputs to today (no future dates allowed)
     (function() {
       var todayStr = new Date().toISOString().slice(0, 10);
-      ['birth', 'cat2birth'].forEach(function(n) {
+      ['birth', 'cat2birth', 'rabies', 'fvrcp', 'deworm'].forEach(function(n) {
         var el = wizard.querySelector('[name="' + n + '"]');
         if (el) el.setAttribute('max', todayStr);
       });
@@ -202,10 +202,9 @@
     function collectOptions() {
       var options = [];
       function add(name, key, price, perDay) { if (checked(name)) options.push({ name: t(key), price: price, perDay: !!perDay }); }
-      add('optPlay', 'res.opt.play', 50, false);
+      add('optPlay', 'res.opt.play', 50, true);
       add('optMedsSimple', 'res.opt.medsSimple', 25, true);
       add('optMedsExtended', 'res.opt.medsExtended', 35, true);
-      add('optGrooming', 'res.opt.grooming', 85, false);
       add('optTransportOne', 'res.opt.transportOne', 80, false);
       add('optTransportRound', 'res.opt.transportRound', 140, false);
       data.options = options; data.transportAddress = value('transportAddress'); data.optionNotes = value('optionNotes');
