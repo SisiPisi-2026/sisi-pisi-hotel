@@ -230,3 +230,23 @@ window.translations["hu"] = Object.assign(window.translations["hu"] || {}, {
   "about.story.p11": "Mert amikor ő nálunk marad, te nyugodtan távozhatsz.",
   "about.story.outro": "„Nyugalom a cicának. Nyugalom neked.\""
 });
+
+/* Rezervări dezactivate până la deschidere (octombrie 2026) */
+window.translations["ro"] = Object.assign(window.translations["ro"] || {}, {
+  "res.soon.title": "Rezervările se deschid în curând.",
+  "res.soon.lead": "Sisi Pisi Boutique Hotel se pregătește de deschidere în Brașov. Momentan nu preluăm rezervări și nu solicităm plăți.",
+  "res.soon.text": "Dacă vrei să afli primul când deschidem, scrie-ne la contact@sisipisi.ro.",
+  "res.soon.cta": "Scrie-ne"
+});
+window.translations["en"] = Object.assign(window.translations["en"] || {}, {
+  "res.soon.title": "Bookings open soon.",
+  "res.soon.lead": "Sisi Pisi Boutique Hotel is preparing to open in Brașov. We are not taking bookings or payments yet.",
+  "res.soon.text": "To be the first to know when we open, write to contact@sisipisi.ro.",
+  "res.soon.cta": "Write to us"
+});
+window.translations["hu"] = Object.assign(window.translations["hu"] || {}, {
+  "res.soon.title": "A foglalások hamarosan indulnak.",
+  "res.soon.lead": "A Sisi Pisi Boutique Hotel nyitásra készül Brassóban. Jelenleg nem fogadunk foglalásokat és nem kérünk fizetést.",
+  "res.soon.text": "Ha elsőként szeretnél értesülni a nyitásról, írj nekünk: contact@sisipisi.ro.",
+  "res.soon.cta": "Írj nekünk"
+});
