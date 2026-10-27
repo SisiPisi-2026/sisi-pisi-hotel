@@ -782,7 +782,7 @@ const translations = {
     "about.team.eyebrow": "Dedicated team",
     "about.team.title": "Consistent care. Clear responsibility.",
     "about.team.p1": "Every stage of the stay is organised through clear roles, stable routine and documented internal procedures. Communication with owners, daily monitoring and cat care follow the same operational framework, so the experience stays calm, predictable and controlled.",
-    "about.team.p2": "Veterinary assistance will be provided through a dedicated partnership with a veterinary clinic, according to the internal emergency procedure.",
+    "about.team.p2": "Veterinary assistance is provided through a dedicated partnership with a veterinary clinic, according to the internal emergency procedure.",
     "about.team.vet.role": "VETERINARY PARTNER",
     "about.team.vet.name": "Dedicated veterinary support",
     "about.team.vet.bio": "Dedicated veterinary contact, internal emergency procedure and clear path for situations requiring medical evaluation.",
